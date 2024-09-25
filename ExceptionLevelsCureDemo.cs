@@ -6,18 +6,8 @@ using System.Threading.Tasks;
 
 namespace Otus.Exceptions
 {
-    enum WhatToThrow
-    {
-        Red,
-        Purple,
-        Blue,
-    }
-
-
-
-
     /// <summary>
-    /// Обобшенный класс исключение-болезнь
+    /// Обобщенный класс исключение-болезнь
     /// </summary>
     class IllnessException : Exception { }
 
@@ -35,80 +25,18 @@ namespace Otus.Exceptions
     class VirusException : IllnessException { }
 
 
-
-
-
     /// <summary>
-    /// Красная ошибка
+    /// Класс демонстрации работы иерархии вызовов ошибок
     /// </summary>
-    class RedException : Exception
-    {
-        public RedException() : base("CODE KRASNIY")
-        {
-        }
-
-        public RedException(string message) : base(message)
-        {
-        }
-    }
-
-
-    /// <summary>
-    /// Фиолетовая ошибка 
-    /// Наследуется от Красной ошибки
-    /// (частный случай Фиолетовой ошибки)
-    /// </summary>
-    class PurpleException : RedException
-    {
-        public PurpleException() : base("CODE FIOLETOVIY")
-        {
-
-        }
-    }
-
-
-
-    /// <summary>
-    /// Класс демонстрации рабоыт иерархии вызовово ошиюкт
-    /// </summary>
-    public static class ExceptionLevelsDemo
+    public static class ExceptionLevelsCureDemo
     {
 
         public static void Demo()
         {
-            // Демрнстрация обработки ошибок,
+            // Демонстрация обработки ошибок,
             // Которые наследуются друг от друга
-            // DemoCure();
-
-            //return;
-            // Демонстрация обрабртки ошибок
-            // Появляющихся во внутренних функция
-            InheritDemo();
-
-
+            DemoCure();
         }
-
-
-        /// <summary>
-        /// Демонстрация перехвата
-        /// наследуемых исключений
-        /// </summary>
-        static void InheritDemo()
-        {
-            Level1(WhatToThrow.Purple);
-
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Level1(WhatToThrow.Red);
-
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Level1(WhatToThrow.Blue);
-        }
-
-
 
         /// <summary>
         /// Функция, в зависимости от a пробрасывающая исключение
@@ -126,7 +54,6 @@ namespace Otus.Exceptions
                     throw new InvalidOperationException($"Unknow exception, sorry");
             }
         }
-
 
         /// <summary>
         /// Функция уровня 2, обрабатывает ошибки,
@@ -163,8 +90,6 @@ namespace Otus.Exceptions
             // Все остальные ошибки уйдут необработанными уровенем выше (в функцию Level1)
         }
 
-
-
         /// <summary>
         /// Функция уровня 1
         /// обрабатывающая все ошибки в Level2
@@ -187,9 +112,6 @@ namespace Otus.Exceptions
                 Console.WriteLine($"Level1: ANY EXCEPTION '{e.Message}'");
             }
         }
-
-
-
 
         /// <summary>
         ///  Функция обработки исключений-болезни
@@ -241,10 +163,5 @@ namespace Otus.Exceptions
             // throw new MicrobeException();
 
         }
-
-
-
-
-
     }
 }
